@@ -20,21 +20,24 @@ export class CameraProvider {
           observer.complete();
         },
         err => {
+          console.log(err);
           observer.error("Ocorreu um erro ao capturar a imagem.", err);
-          this.displayErrorMessage();
+          this.displayErrorMessage(err);
           observer.complete();
         }
       );
     });
   }
 
-  displayErrorMessage() {
-    var errorMessage = {
-      subTitle:
-        "Ocorreu um erro ao capturar a imagem. Por favor, tente novamente.",
-      buttons: ["Ok"]
-    };
+  displayErrorMessage(err) {
+    if (err != "No Image Selected") {
+      var errorMessage = {
+        subTitle:
+          "Ocorreu um erro ao capturar a imagem. Por favor, tente novamente.",
+        buttons: ["Ok"]
+      };
 
-    this._alertCtrl.create(errorMessage).present();
+      this._alertCtrl.create(errorMessage).present();
+    }
   }
 }

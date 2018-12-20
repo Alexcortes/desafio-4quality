@@ -1,5 +1,7 @@
 import { Component } from "@angular/core";
 import { NavController } from "ionic-angular";
+import { Observable } from "rxjs/Observable";
+import "rxjs/add/observable/zip";
 
 import { CameraProvider } from "../../providers/camera/camera";
 import { GeolocationProvider } from "../../providers/geolocation/geolocation";
@@ -18,32 +20,19 @@ export class HomePage {
   ) {}
 
   openCamera() {
-    this._geolocationProvider.getLocation().subscribe(
-      location => {
-        this._cameraProvider.takePicture().subscribe(
-          image => {
-            this._registerProvider
-              .saveRegister({
-                latitude: location.latitude,
-                longitude: location.longitude,
-                image: image.base64Image
-              })
-              .subscribe(
-                result => {
-                  console.log(result);
-                },
-                error => {
-                  console.log(error);
-                }
-              );
-          },
-          error => {
-            console.log(error);
-          }
-        );
+    Observable.zip(
+      this._geolocationProvider.getLocation(),
+      this._cameraProvider.takePicture()
+    ).subscribe(
+      ([location, image]) => {
+        this._registerProvider.saveRegister({
+          latitude: location.latitude,
+          longitude: location.longitude,
+          image: image.base64Image
+        });
       },
       error => {
-        console.log("error", error);
+        console.log(error);
       }
     );
   }

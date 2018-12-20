@@ -19,8 +19,7 @@ export class GeolocationProvider {
     loader.present();
 
     const geolocationOptions: GeolocationOptions = {
-      enableHighAccuracy: true,
-      timeout: 10000
+      enableHighAccuracy: true
     };
 
     return Observable.create(observer => {

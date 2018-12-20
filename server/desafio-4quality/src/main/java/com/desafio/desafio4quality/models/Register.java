@@ -26,7 +26,7 @@ public class Register implements Serializable {
 	@CreationTimestamp
 	private Date timestamp;
 	
-	@Column(nullable=false, length=100000)
+	@Column(nullable=false, length=3000000)
 	private String image;
 	
 	@Column(nullable=false)

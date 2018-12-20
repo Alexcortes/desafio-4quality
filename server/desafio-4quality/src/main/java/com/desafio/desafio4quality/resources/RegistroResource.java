@@ -1,6 +1,7 @@
 package com.desafio.desafio4quality.resources;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,6 +11,7 @@ import com.desafio.desafio4quality.models.Register;
 import com.desafio.desafio4quality.repository.RegisterRepository;
 
 @RestController
+@CrossOrigin
 @RequestMapping(value = "/api")
 public class RegistroResource {
 

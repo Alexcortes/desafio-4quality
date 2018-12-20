@@ -1,0 +1,8 @@
+{
+  "name": "desafio-4quality",
+  "app_id": "",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}
